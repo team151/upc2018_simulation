@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="Team 151" content="" />
+
+    <script src="libraries/jquery.min.js"></script>
+    <script src="libraries/sylvester.js"></script>
+    <script src="libraries/three.min.js"></script>
+    <script src="libraries/OBJLoader.js"></script>
+    <script src="libraries/OrbitControls.js"></script>
+    <script src="simulationscript.js"></script>
+  </head>
+
+  <body onload="init()">
+    <span id="container"></span> 
+
+<textarea id="logvals" cols="70" rows="30"></textarea>
+<br>
+    <Button onclick="$('#logvals').val('')" />Clear log</button>
+    <Button id="repeat" onclick="reset_parameters()" />Restart Simulation</button>
+<br>
+Time step: <input id="timestep" type="number" min="0.0001" max="1" step="0.001" value="0.001" onchange="onchange_timestep(this)">
+    <br>
+Perturb Y-Angle <input type="number" step="0.01" id="pyangle" value="0.01"> <Button onclick="perturb_y_angle(this)" /> Perturb </button>
+
+    Perturb X-Angle <input type="number" step="0.01" id="pzangle" value="0.01"> <Button onclick="perturb_z_angle(this)" /> Perturb </button>
+<br>
+    Perturb Y-Position <input type="number" step="0.01" id="pyposition" value="0.01"> <Button onclick="perturb_y_pos(this)" /> Perturb </button>
+
+    Perturb X-Position <input type="number" step="0.01" id="pzposition" value="0.01"> <Button onclick="perturb_z_pos(this)" /> Perturb </button>
+<br>
+Sail Solid Angle: <input id="solidangle" type="range" min="0.1" max="1" step="0.01" value="1" onchange="onchange_solidangle(this)"><span id="solidanglel">1π</span>
+<br>
+<!-- Laser Radius Factor: <input id="radiusfactor" type="range" min="0.1" max="1" step="0.01" value="1" onchange="onchange_radiusfactor(this)"><span id="radiusfactorl">1</span> -->
+Center of Mass: <input id="com" type="range" min="0.1" max="100" step="0.1" value="5" onchange="onchange_com(this)"><span id="coml">5</span> [m]
+    <br>
+Total Mass: <input id="mass" type="range" min="0.1" max="10" step="0.01" value="1" onchange="onchange_mass(this)"><span id="massl">1</span> [g]
+    <br>
+Z-Angular Velocity: <input id="omegax" type="number" min="-10" max="10" step="0.01" value="0" onchange="onchange_omegax(this)">
+    <br>
+</Body>
+</html>
+
