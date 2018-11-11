@@ -20,19 +20,14 @@ function update () {
 
 function update_simulation_state()
 {
-/*    var pos = transversal_position(SIMULATION.time);
-    var vel = transversal_velocity(SIMULATION.time);
-    var ang = angle(SIMULATION.time);
-    var angvel = angular_velocity(SIMULATION.time);
-  */  
-
     update_euler();
-    
+
+    // logs stuff
     if (SIMULATION.logcount > 0){
 	SIMULATION.logcount --;
 	var logtext = "";
 	logtext += String(200 - SIMULATION.logcount) + " \t ";
-	logtext += String(round_to(SIMULATION.time, 2)) + " \t ";
+	logtext += String(round_to(SIMULATION.time, 4)) + " \t ";
 	logtext += String(round_to(SIMULATION.sailPosition[2]/METERS, 5)) + " \t ";
 	logtext += String(round_to(SIMULATION.sailPosition[1]/METERS, 5)) + " \t ";
 	logtext += String(round_to(SIMULATION.sailAngle[2], 3)) + " \t ";
@@ -84,6 +79,7 @@ function length(x, y)
     return Math.sqrt(x*x + y*y);
 }
 
+// uses simple euler's method to update state
 function update_euler()
 {
     var L_c = SIMULATION.centerOfMass; // center of mass
@@ -124,16 +120,6 @@ function update_euler()
     SIMULATION.sailAngle[2] += SIMULATION.DeltaT * SIMULATION.sailAngularVelocity[2];
     SIMULATION.sailAngle[1] += SIMULATION.DeltaT * SIMULATION.sailAngularVelocity[1];
     
-}
-
-function transversal_position(time)
-{
-    return $V([0.1*Math.sin(time*1000)*METERS, 0.1*Math.sin(time*100)*METERS]);
-}
-
-function transversal_velocity(time)
-{
-    return $V([0, 0]);
 }
 
 function angle(time)
